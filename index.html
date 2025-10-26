@@ -78,7 +78,7 @@
             color: var(--color-accent) !important;
         }
         
-        /* --- ScrollSpy Active Link Style --- */
+        /* --- ScrollSpy Active Link Style (NO LONGER NEEDED, BUT KEPT FOR REFERENCE) --- */
         .active-link {
             color: var(--color-primary) !important; 
             font-weight: 700;
@@ -185,15 +185,8 @@
                     Jitender's Biodata
                 </h1>
                 
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3 ml-auto">
                     </div>
-
-                <nav id="main-nav" class="flex space-x-6 text-sm font-medium ml-auto">
-                    <a href="#profile" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="profile">Profile</a>
-                    <a href="#career" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="career">Career</a>
-                    <a href="#family" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="family">Family</a>
-                    <a href="#contact-card" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="contact-card">Contact</a>
-                </nav>
             </div>
         </div>
     </header>
@@ -229,7 +222,7 @@
     </section>
 
     <section id="gallery" class="section py-10">
-        <h2 class="text-3xl font-bold text-center mb-8 text-teal-800 border-b-2 border-amber-600 inline-block pb-1 px-4" style="border-color:var(--color-accent);">Photos</h2>
+        <h2 class="text-3xl font-bold text-center mb-8 text-teal-800 border-b-2 border-amber-600 inline-block pb-1 px-4" style="border-color:var(--color-accent);">Moments Captured</h2>
 
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             
@@ -269,7 +262,7 @@
                     </div>
                     <div class="flex justify-between border-b border-gray-100 pb-2">
                         <dt class="detail-label">Place of Birth</dt>
-                        <dd class="highlight-text">New Delhi</dd>
+                        <dd class="highlight-text">Delhi</dd>
                     </div>
                     <div class="flex justify-between border-b border-gray-100 pb-2">
                         <dt class="detail-label">Zodiac Sign</dt>
@@ -478,54 +471,6 @@
             }
         });
         
-        // --- ScrollSpy Implementation ---
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('.section, #contact-card'); // Include the contact card as a section
-        
-        function scrollSpy() {
-            let current = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100; // Subtract header height
-                const sectionHeight = section.clientHeight;
-                
-                // If the current scroll position is within the boundaries of the section
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            // Handle Contact Card which is inside lg:col-span-1
-            if (scrollY + window.innerHeight >= document.body.scrollHeight - 50) {
-                 // Check if user is near the very bottom, typically where contact is
-                 current = 'contact-card';
-            }
-
-
-            navLinks.forEach(link => {
-                link.classList.remove('active-link');
-                if (link.getAttribute('data-target') === current) {
-                    link.classList.add('active-link');
-                }
-            });
-            
-            // Special Case: Always highlight 'Profile' when at the very top (scrollY < 100)
-            if (window.scrollY < 100) {
-                 navLinks.forEach(link => link.classList.remove('active-link'));
-                 const profileLink = document.querySelector('.nav-link[data-target="profile"]');
-                 if (profileLink) {
-                     profileLink.classList.add('active-link');
-                 }
-            }
-        }
-        
-        // Listen for scroll events
-        window.addEventListener('scroll', scrollSpy);
-        
-        // Run once on load to set the initial active link
-        document.addEventListener('DOMContentLoaded', scrollSpy);
-
-
         // --- Share Profile Function ---
         function shareProfile() {
             const url = window.location.href;
