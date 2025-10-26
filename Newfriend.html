@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Partner - Instant Chat</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s;
+        }
+
+        /* Romantic Background for LOGIN VIEW */
+        .romantic-bg {
+            /* Placeholder romantic image URL. */
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(160, 0, 80, 0.4)), 
+                              url('https://images.unsplash.com/photo-1542401886-65d6c61db217?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Standard Background for CHAT VIEW */
+        .chat-bg {
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        
+        /* Main Heading Styling */
+        .main-title-glow {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Primary Button (Deep Red/Pink) */
+        .btn-primary {
+            background-color: #f43f5e; /* Rose 500 */
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 8px 15px rgba(244, 63, 94, 0.4);
+        }
+        .btn-primary:hover {
+            background-color: #e11d48; /* Rose 600 */
+            transform: translateY(-2px);
+        }
+        
+        /* Form Card Design */
+        #login-card {
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.98); 
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Input Focus effect */
+        input:focus, select:focus {
+            border-color: #f43f5e !important;
+            box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.3) !important;
+        }
+
+        /* --- Chat Specific Styles --- */
+        #chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+        #chat-messages::-webkit-scrollbar-thumb {
+            background-color: #f43f5e;
+            border-radius: 10px;
+        }
+        #chat-messages::-webkit-scrollbar-track {
+            background: #e5e7eb;
+        }
+
+        .my-message {
+            background-color: #f43f5e; 
+            color: white;
+            border-radius: 1rem 1rem 0 1rem;
+        }
+        .partner-message {
+            background-color: #ffffff; 
+            color: #1f2937;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem 1rem 1rem 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col romantic-bg">
+
+    <header class="w-full p-4 bg-transparent transition-colors duration-500" id="main-header">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold tracking-wider" id="logo-text">
+                <span class="text-rose-500">Connect</span><span class="text-white" id="partner-text">Partner</span>
+            </h1>
+            <div id="user-display-info" class="flex items-center space-x-3 hidden">
+                <p class="text-sm font-medium text-gray-700" id="user-name-display">Guest</p>
+                <div class="h-10 w-10 bg-rose-500 rounded-full flex items-center justify-center text-white font-bold" id="user-avatar">
+                    G
+                </div>
+                <button onclick="logout()" class="text-gray-500 hover:text-rose-500 transition text-sm">
+                    Logout
+                </button>
+            </div>
+            <button class="text-white text-2xl hover:text-gray-300 transition md:hidden" id="menu-button">☰</button>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center p-4" id="login-view">
+        
+        <div class="text-center text-white mb-12 max-w-2xl">
+            <h2 class="text-5xl md:text-6xl font-black leading-tight main-title-glow">
+                Connect <span style="color: #ff9800;">Instantly</span>
+            </h2>
+            <p class="mt-4 text-xl font-medium text-gray-100">
+                Your private space for secure, one-to-one chat.
+            </p>
+        </div>
+
+        <div id="login-card" class="p-8 rounded-2xl shadow-2xl w-full">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center border-b pb-3">
+                Guest Login
+            </h3>
+            
+            <p class="text-gray-600 mb-6 text-center text-sm">
+                Enter details to get your unique CHAT ID and start connecting.
+            </p>
+
+            <form id="guest-login-form" class="space-y-5">
+                
+                <div>
+                    <label for="guest-name" class="block text-sm font-semibold text-gray-700">Name</label>
+                    <input type="text" id="guest-name" required 
+                           class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-inner" 
+                           placeholder="Your Nickname">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="guest-age" class="block text-sm font-semibold text-gray-700">Age</label>
+                        <input type="number" id="guest-age" required min="18" max="99"
+                               class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-inner" 
+                               placeholder="18+">
+                    </div>
+                    <div>
+                        <label for="guest-sex" class="block text-sm font-semibold text-gray-700">Sex</label>
+                        <select id="guest-sex" required 
+                                class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-inner bg-white">
+                            <option value="" disabled selected>Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="guest-city" class="block text-sm font-semibold text-gray-700">City</label>
+                    <input type="text" id="guest-city" required 
+                           class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-inner" 
+                           placeholder="Current Location">
+                </div>
+
+                <button type="submit" class="btn-primary w-full text-white p-3 rounded-lg font-bold text-lg shadow-lg mt-8">
+                    CHAT NOW
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full p-4 md:py-8 md:px-4 flex space-x-4 hidden" id="chat-view">
+        
+        <div class="hidden md:block w-1/4 bg-white rounded-xl shadow-lg p-6 h-full">
+            <h3 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2">Your Partner</h3>
+            <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                <div class="h-10 w-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 font-bold">
+                    P
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-gray-800">Searching...</p>
+                    <p class="text-xs text-gray-500">Connecting to a random user...</p>
+                </div>
+            </div>
+            <div class="mt-6">
+                <p class="text-sm font-medium text-gray-700">Chat ID:</p>
+                <p class="text-sm font-mono text-rose-500 break-all" id="user-chat-id">LOADING...</p>
+            </div>
+        </div>
+
+        <div class="flex flex-col w-full md:w-3/4 bg-white rounded-xl shadow-lg overflow-hidden min-h-[80vh]">
+            
+            <div id="chat-messages" class="flex-grow p-4 space-y-4 overflow-y-auto">
+                <div class="flex justify-start">
+                    <div class="partner-message p-3 max-w-xs md:max-w-md shadow-md">
+                        <p class="text-sm">Welcome! I'm your coding assistant. Send a message to start.</p>
+                        <span class="block text-xs text-gray-400 mt-1 text-right">09:00 AM</span>
+                    </div>
+                </div>
+                
+                </div>
+
+            <div class="p-4 border-t border-gray-200">
+                <form id="message-form" class="flex space-x-3">
+                    <input type="text" id="message-input" required 
+                           class="flex-grow p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-rose-500" 
+                           placeholder="Type your message here...">
+                    <button type="submit" class="bg-rose-500 hover:bg-rose-600 text-white p-3 rounded-full transition duration-150 flex items-center justify-center shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+    
+    <footer class="text-center p-4 text-gray-300 text-sm bg-black bg-opacity-30 transition-colors duration-500" id="main-footer">
+        <p>© 2025 ConnectPartner. Instant, Anonymous, and Secure Chat.</p>
+    </footer>
+
+    <script>
+        // DOM Element References
+        const body = document.body;
+        const loginView = document.getElementById('login-view');
+        const chatView = document.getElementById('chat-view');
+        const guestLoginForm = document.getElementById('guest-login-form');
+        const chatMessages = document.getElementById('chat-messages');
+        const messageForm = document.getElementById('message-form');
+        const messageInput = document.getElementById('message-input');
+
+        const mainHeader = document.getElementById('main-header');
+        const partnerText = document.getElementById('partner-text'); 
+        const menuButton = document.getElementById('menu-button');
+        const userDisplayInfo = document.getElementById('user-display-info');
+        const mainFooter = document.getElementById('main-footer');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userDataString = localStorage.getItem('chatUserData');
+            
+            // Check if user is already logged in
+            if (userDataString) {
+                const userData = JSON.parse(userDataString);
+                showChatView(userData);
+            } else {
+                showLoginView();
+            }
+
+            // --- A. Login Form Submission Handler ---
+            guestLoginForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Stop the default browser action (page reload)
+
+                const name = document.getElementById('guest-name').value.trim();
+                const age = document.getElementById('guest-age').value.trim();
+                const sex = document.getElementById('guest-sex').value;
+                const city = document.getElementById('guest-city').value.trim();
+
+                // Double-check if all required fields were filled by the browser's native validation
+                if (!name || !age || !sex || !city) {
+                    // This should rarely run if HTML 'required' works, but it's a safety net
+                    alert('Please fill out all required fields.');
+                    return; 
+                }
+                
+                const guestId = generateUniqueGuestId(name, age, sex);
+
+                const userData = {
+                    name: name,
+                    age: age,
+                    sex: sex,
+                    city: city,
+                    uniqueId: guestId, 
+                    isGuest: true
+                };
+                localStorage.setItem('chatUserData', JSON.stringify(userData));
+
+                // Switch to the chat interface
+                showChatView(userData);
+            });
+
+            // --- B. Message Form Submission Handler (Chat View) ---
+            messageForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const messageText = messageInput.value.trim();
+
+                if (messageText) {
+                    addMessage(messageText, 'sent');
+                    messageInput.value = '';
+                    messageInput.focus();
+                    
+                    // --- Placeholder: Partner Echo Response ---
+                    setTimeout(() => {
+                        addMessage(`Echo: ${messageText}`, 'received');
+                    }, 1000);
+                }
+            });
+        });
+
+        // --- C. View Switching Functions ---
+
+        function showLoginView() {
+            // View Visibility
+            chatView.classList.add('hidden');
+            loginView.classList.remove('hidden');
+            
+            // Body Styling
+            body.classList.remove('chat-bg');
+            body.classList.add('romantic-bg');
+            
+            // Header Styling
+            mainHeader.classList.remove('bg-white', 'shadow-md');
+            mainHeader.classList.add('bg-transparent');
+            
+            partnerText.classList.remove('text-gray-900');
+            partnerText.classList.add('text-white');
+            
+            userDisplayInfo.classList.add('hidden');
+            menuButton.classList.remove('hidden');
+            menuButton.classList.add('text-white');
+
+            // Footer Styling
+            mainFooter.classList.remove('bg-white', 'border-t', 'text-gray-500');
+            mainFooter.classList.add('bg-black', 'bg-opacity-30', 'text-gray-300');
+        }
+
+        function showChatView(userData) {
+            // View Visibility - CRITICAL STEP
+            loginView.classList.add('hidden');
+            chatView.classList.remove('hidden');
+            
+            // Body Styling
+            body.classList.remove('romantic-bg');
+            body.classList.add('chat-bg');
+
+            // Header Styling
+            mainHeader.classList.remove('bg-transparent');
+            mainHeader.classList.add('bg-white', 'shadow-md');
+            
+            partnerText.classList.remove('text-white');
+            partnerText.classList.add('text-gray-900');
+            
+            userDisplayInfo.classList.remove('hidden');
+            menuButton.classList.add('hidden');
+
+            // Update User Info in Chat View
+            document.getElementById('user-name-display').textContent = userData.name;
+            document.getElementById('user-chat-id').textContent = userData.uniqueId;
+            document.getElementById('user-avatar').textContent = userData.name.charAt(0).toUpperCase();
+
+            // Footer Styling
+            mainFooter.classList.remove('bg-black', 'bg-opacity-30', 'text-gray-300');
+            mainFooter.classList.add('bg-white', 'border-t', 'text-gray-500');
+            mainFooter.querySelector('p').textContent = 'Your session is active. Please be respectful of your partner.';
+        }
+
+        // --- D. Utility Functions ---
+
+        // ID Generation Function: [NAME]_[AGE]@[GENDER]
+        function generateUniqueGuestId(name, age, sex) {
+            let formattedName = name.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+            let formattedSex = sex.charAt(0).toUpperCase() + sex.slice(1).toLowerCase();
+            const uniqueId = `${formattedName}_${age}@${formattedSex}`;
+            return uniqueId;
+        }
+
+        // Message Display Function
+        function addMessage(text, type) {
+            const messageWrapper = document.createElement('div');
+            const messageBubble = document.createElement('div');
+            const timeStamp = document.createElement('span');
+
+            if (type === 'sent') {
+                messageWrapper.className = 'flex justify-end';
+                messageBubble.className = 'my-message p-3 max-w-xs md:max-w-md shadow-lg';
+                timeStamp.className = 'block text-xs text-rose-200 mt-1 text-right';
+            } else { // received
+                messageWrapper.className = 'flex justify-start';
+                messageBubble.className = 'partner-message p-3 max-w-xs md:max-w-md shadow-md';
+                timeStamp.className = 'block text-xs text-gray-400 mt-1 text-left';
+            }
+
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            messageBubble.innerHTML = `<p class="text-sm">${text}</p>`;
+            timeStamp.textContent = timeString;
+
+            messageBubble.appendChild(timeStamp);
+            messageWrapper.appendChild(messageBubble);
+            chatMessages.appendChild(messageWrapper);
+
+            // Auto-scroll to the bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Logout Function
+        function logout() {
+            if (confirm("Are you sure you want to log out and end your session?")) {
+                localStorage.removeItem('chatUserData');
+                showLoginView(); // Switch back to the login screen
+            }
+        }
+    </script>
+</body>
+</html>
