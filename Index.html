@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Portfolio - Jitender</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Load Inter font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        /* Premium Theme Colors */
+        :root {
+            --color-primary: #0F4C5C; /* Deep Teal/Forest Green */
+            --color-accent: #C5B358; /* Soft Gold/Mustard */
+            --color-background: #F9F7F3; /* Creamy Off-White */
+            --color-card-bg: #FFFFFF; /* Pure White Card */
+            --color-text: #2c2c2c; /* Dark Text */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            scroll-behavior: smooth;
+        }
+        .section {
+            padding: 4rem 1rem;
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+        .info-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid #e0e0e0;
+        }
+        .highlight-text {
+            color: var(--color-primary); /* Use deep teal for highlight */
+            font-weight: 600;
+        }
+        .detail-label {
+            font-weight: 500;
+            color: #777777; /* Soft gray for labels */
+        }
+        .contact-link {
+            transition: color 0.2s;
+        }
+        .contact-link:hover {
+            color: var(--color-accent);
+        }
+
+        /* Lightbox CSS (for image popup) */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lightbox-image-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    </style>
+    <!-- Lucide Icons for contact details -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body onload="lucide.createIcons()">
+
+    <!-- Header (Simple Title Bar) -->
+    <header class="bg-white/95 sticky top-0 z-50 border-b border-gray-200 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <h1 class="text-xl font-bold tracking-wider text-teal-800">
+                    Jitender's Biodata
+                </h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section / Main Profile -->
+    <section id="profile" class="section pt-10">
+        <div class="info-card p-8 rounded-2xl shadow-xl flex flex-col md:flex-row items-center md:items-start gap-8">
+            
+            <!-- Profile Picture (Kurta Pajama) -->
+            <div class="flex-shrink-0">
+                <img 
+                    src="uploaded:1000000178.jpg" 
+                    alt="Jitender's Profile Picture (Traditional Attire - Kurta Pajama)" 
+                    class="w-48 h-60 object-cover rounded-lg shadow-2xl border-4 border-teal-800 cursor-pointer"
+                    onerror="this.onerror=null; this.src='https://placehold.co/200x250/CCCCCC/0F4C5C?text=Image+Unavailable';"
+                    onclick="openLightbox(this.src, this.alt)"
+                >
+            </div>
+
+            <!-- Introduction Text -->
+            <div class="flex-grow text-center md:text-left">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-teal-900 mb-2">
+                    Jitender
+                </h2>
+                <p class="text-xl font-medium text-amber-600 mb-4" style="color:var(--color-accent);">
+                    Content Operation Team Lead | Committed & Graduate
+                </p>
+                <div class="max-w-xl mx-auto md:mx-0">
+                    <p class="text-gray-600 leading-relaxed">
+                        I believe in building a life filled with mutual respect, intellectual growth, and shared joy. As a passionate traveler and reader, I seek a partner who values thoughtful conversation, shares a zest for life, and is ready to co-create a warm and supportive home.
+                    </p>
+                </div>
+                
+                <!-- Quick Summary Tags (Mobile/Tablet Friendly) -->
+                <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
+                    <span class="px-3 py-1 bg-teal-800 text-white text-sm rounded-full">30 Years</span>
+                    <span class="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-full">5' 11"</span>
+                    <span class="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-full">Hindu - Yadav</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="section py-10">
+        <h2 class="text-3xl font-bold text-center mb-8 text-teal-800 border-b-2 border-amber-600 inline-block pb-1 px-4" style="border-color:var(--color-accent);">Moments Captured</h2>
+
+        <!-- Responsive Photo Grid (4 images) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+
+            <!-- Image 1: Formal Portrait (Shirt/Jeans 1) -->
+            <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
+                <img src="uploaded:1000000645.jpg" alt="Formal professional portrait (Shirt/Jeans)" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+            </div>
+
+            <!-- Image 2: Candid Smile (Shirt/Jeans 2) -->
+            <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
+                <img src="uploaded:1000000262.jpg" alt="Candid photo with a smile (Shirt/Jeans)" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+            </div>
+
+            <!-- Image 3: Traditional Attire (Kurta Pajama) -->
+            <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
+                <img src="uploaded:1000000178.jpg" alt="Traditional attire photo" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+            </div>
+            
+            <!-- Image 4: Placeholder -->
+            <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
+                <img src="https://placehold.co/400x500/0F4C5C/C5B358?text=Family+Photo" alt="Photo with family or close friends placeholder" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- Main Details Sections -->
+    <main class="section grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Column 1: Personal & Lifestyle -->
+        <div class="lg:col-span-1 space-y-8">
+            
+            <!-- Personal Information Card -->
+            <div class="info-card p-6 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-teal-800">Personal Profile</h3>
+                <dl class="space-y-3">
+                    <div class="flex justify-between border-b border-gray-100 pb-2">
+                        <dt class="detail-label">Date of Birth</dt>
+                        <dd class="highlight-text">18 September 1993</dd>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-100 pb-2">
+                        <dt class="detail-label">Time of Birth</dt>
+                        <dd class="highlight-text">03:15 PM</dd>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-100 pb-2">
+                        <dt class="detail-label">Place of Birth</dt>
+                        <dd class="highlight-text">Delhi</dd>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-100 pb-2">
+                        <dt class="detail-label">Manglik Status</dt>
+                        <dd class="highlight-text">Yes</dd>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-100 pb-2">
+                        <dt class="detail-label">Gothram (Father's)</dt>
+                        <dd class="highlight-text">Nirban</dd>
+                    </div>
+                    <div class="flex justify-between">
+                        <dt class="detail-label">Marital Status</dt>
+                        <dd class="highlight-text">Single</dd>
+                    </div>
+                </dl>
+            </div>
+
+            <!-- Contact Card -->
+            <div class="info-card p-6 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-teal-800">Contact Details</h3>
+                <p class="text-gray-600 mb-4">
+                    Further discussions can be initiated using the contact details provided below:
+                </p>
+                <div class="space-y-2">
+                    <!-- Phone Number (Clickable for Call) -->
+                    <p class="text-lg font-semibold">
+                        <span class="detail-label block text-sm">Phone:</span>
+                        <a href="tel:+919654201893" class="highlight-text contact-link flex items-center gap-2">
+                            <span data-lucide="phone" class="w-5 h-5 text-amber-600"></span>
+                            +91 96542 01893 (Call)
+                        </a>
+                    </p>
+
+                    <!-- WhatsApp Link -->
+                    <p class="text-lg font-semibold pt-1">
+                        <span class="detail-label block text-sm">WhatsApp:</span>
+                        <a href="https://wa.me/919654201893?text=I+am+interested+in+your+biodata+portfolio." target="_blank" class="highlight-text contact-link flex items-center gap-2">
+                            <span data-lucide="message-square-text" class="w-5 h-5 text-amber-600"></span>
+                            +91 96542 01893 (Chat)
+                        </a>
+                    </p>
+
+                    <!-- Email ID (Clickable for Mail) -->
+                    <p class="text-lg font-semibold pt-1">
+                        <span class="detail-label block text-sm">Email:</span>
+                        <a href="mailto:Jitukumar181993@gmail.com" class="highlight-text contact-link flex items-center gap-2">
+                            <span data-lucide="mail" class="w-5 h-5 text-amber-600"></span>
+                            Jitukumar181993@gmail.com
+                        </a>
+                    </p>
+
+                    <!-- Address -->
+                    <p class="text-lg font-semibold pt-1">
+                        <span class="detail-label block text-sm">Address:</span>
+                        <span class="text-gray-600 text-base">Village Paprawat, Najafgarh, Delhi</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2: Career & Education (Spanning 2/3 width on large screens) -->
+        <div class="lg:col-span-2 space-y-8">
+
+            <!-- Career & Education Card -->
+            <div class="info-card p-6 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-teal-800">Career & Education</h3>
+                
+                <div class="space-y-6">
+                    <!-- Professional Background -->
+                    <div class="border-l-4 border-amber-600 pl-4">
+                        <h4 class="text-xl font-semibold text-teal-900">Professional Background</h4>
+                        <p class="text-gray-600 mt-2">
+                            **Designation:** <span class="highlight-text">Content Operation Team Lead</span>
+                        </p>
+                        <p class="text-gray-500 mt-1 text-sm">
+                            Annual Income: **4 LPA** | Location: **Delhi, India**
+                        </p>
+                    </div>
+
+                    <!-- Educational Background -->
+                    <div class="border-l-4 border-amber-600 pl-4">
+                        <h4 class="text-xl font-semibold text-teal-900">Educational Qualifications</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1 mt-2">
+                            <li>**Graduate** from IEC University</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Family Details Card -->
+            <div class="info-card p-6 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-teal-800">Family Background</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Father Details -->
+                    <div class="space-y-1">
+                        <h4 class="text-lg font-semibold text-teal-900">Father: Dharmveer Yadav</h4>
+                        <p class="text-gray-600"><span class="detail-label">Profession:</span> Retired / At Home (Farmer)</p>
+                        <p class="text-gray-600"><span class="detail-label">Gotra:</span> Nirban</p>
+                    </div>
+                    <!-- Mother Details -->
+                    <div class="space-y-1">
+                        <h4 class="text-lg font-semibold text-teal-900">Mother: Usha Yadav</h4>
+                        <p class="text-gray-600"><span class="detail-label">Profession:</span> Homemaker</p>
+                        <p class="text-gray-600"><span class="detail-label">Gotra:</span> Sanpla</p>
+                    </div>
+                </div>
+                
+                <div class="mt-4 border-t border-gray-100 pt-4">
+                    <h4 class="text-lg font-semibold text-teal-900 mb-2">Siblings</h4>
+                    <p class="text-gray-600">
+                        2 Elder Sisters: Both are married and settled.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interests & Expectations Card -->
+            <div class="info-card p-6 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-teal-800">Interests</h3>
+                
+                <h4 class="text-xl font-semibold text-teal-900">My Interests</h4>
+                <div class="mt-2 flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 bg-amber-100 text-teal-900 text-sm rounded-full">Cricket</span>
+                    <span class="px-3 py-1 bg-amber-100 text-teal-900 text-sm rounded-full">Music</span>
+                    <span class="px-3 py-1 bg-amber-100 text-teal-900 text-sm rounded-full">Cooking</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer / Closing Statement -->
+    <footer class="bg-white border-t border-gray-200 mt-12 py-8 shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-500 text-lg mb-2">
+                "A shared journey built on understanding and respect."
+            </p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Overlay (Hidden by Default) -->
+    <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
+        <div class="lightbox-image-container" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" class="lightbox-image" src="" alt="">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Lightbox Functionality -->
+    <script>
+        // Lightbox Functions (same as before)
+        function openLightbox(src, alt) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-caption').innerText = alt;
+            document.getElementById('lightbox-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-overlay').classList.remove('active');
+            document.body.style.overflow = ''; 
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+        
+        // Ensure Lucide icons are rendered after the DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                 lucide.createIcons();
+            }
+        });
+    </script>
+
+</body>
+</html>
+
