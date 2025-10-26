@@ -172,29 +172,8 @@
             margin-top: 10px;
             font-size: 18px;
         }
-        
-        /* Google Translate Widget Adjustments */
-        #google_translate_element {
-            margin-left: 10px; 
-            margin-right: 10px;
-        }
-        .goog-te-combo {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 3px 6px;
-            height: 30px;
-            background-color: #fff;
-            color: var(--color-primary);
-        }
     </style>
     <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-    }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </head>
 <body onload="lucide.createIcons()">
@@ -207,10 +186,9 @@
                 </h1>
                 
                 <div class="flex items-center gap-3">
-                    <div id="google_translate_element" class="text-sm"></div>
-                </div>
+                    </div>
 
-                <nav id="main-nav" class="hidden md:flex space-x-6 text-sm font-medium ml-4">
+                <nav id="main-nav" class="flex space-x-6 text-sm font-medium ml-auto">
                     <a href="#profile" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="profile">Profile</a>
                     <a href="#career" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="career">Career</a>
                     <a href="#family" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="family">Family</a>
@@ -251,7 +229,7 @@
     </section>
 
     <section id="gallery" class="section py-10">
-        <h2 class="text-3xl font-bold text-center mb-8 text-teal-800 border-b-2 border-amber-600 inline-block pb-1 px-4" style="border-color:var(--color-accent);">Moments Captured</h2>
+        <h2 class="text-3xl font-bold text-center mb-8 text-teal-800 border-b-2 border-amber-600 inline-block pb-1 px-4" style="border-color:var(--color-accent);">Photos</h2>
 
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             
@@ -291,7 +269,7 @@
                     </div>
                     <div class="flex justify-between border-b border-gray-100 pb-2">
                         <dt class="detail-label">Place of Birth</dt>
-                        <dd class="highlight-text">Delhi</dd>
+                        <dd class="highlight-text">New Delhi</dd>
                     </div>
                     <div class="flex justify-between border-b border-gray-100 pb-2">
                         <dt class="detail-label">Zodiac Sign</dt>
@@ -318,6 +296,7 @@
                 <p class="text-gray-600 mb-4">
                     To initiate the discussion or for any inquiries, please use the following contact details:
                 </p>
+                
                 <div class="space-y-4">
                     <a href="https://wa.me/919654201893?text=I+am+interested+in+your+biodata+portfolio." target="_blank" class="contact-btn whatsapp flex items-center justify-center gap-3 p-3 rounded-lg text-lg font-semibold shadow-md">
                         <span data-lucide="message-square-text" class="w-6 h-6"></span>
