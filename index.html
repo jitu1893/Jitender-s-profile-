@@ -5,18 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biodata Portfolio - Jitender</title>
     
-    <!-- ****************************************************** -->
-    <!--  WHATSAPP / SOCIAL MEDIA RICH PREVIEW (OPEN GRAPH TAGS)  -->
-    <!--  ये टैग्स WhatsApp पर 'Open' बटन वाला कार्ड प्रीव्यू दिखाते हैं। -->
-    <!-- ****************************************************** -->
     <meta property="og:title" content="Jitender | Full Biodata & Matrimonial Profile">
-    <meta property="og:description" content="Official Profile: Content Operation Team Lead, Age 30. Tap 'View Profile' to see Personal, Professional & Family details.">
-    <!-- मैंने यहाँ एक आकर्षक placeholder इमेज का उपयोग किया है जो कार्ड में दिखेगा। -->
+    <meta property="og:description" content="Official Profile: Content Operation Team Lead, Age 32. Tap 'View Profile' to see Personal, Professional & Family details.">
     <meta property="og:image" content="https://placehold.co/1200x630/0F4C5C/C5B358?text=JITENDER'S+BIODATA+%7C+TAP+TO+VIEW">
-    <meta property="og:url" content="https://jitender-yadav.github.io/biodata-portfolio/jitender_biodata.html"> <!-- जब आप इसे अपलोड करें तो यहाँ अपना असली लिंक डालें -->
+    <meta property="og:url" content="https://jitender-yadav.github.io/biodata-portfolio/jitender_biodata.html">
     <meta property="og:type" content="website">
-    <!-- ****************************************************** -->
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Load Inter font */
@@ -36,6 +29,10 @@
             background-color: var(--color-background);
             color: var(--color-text);
             scroll-behavior: smooth;
+            
+            /* FIX: Ensures text breaks neatly and doesn't overflow (Responsive Fix) */
+            word-wrap: break-word;
+            overflow-wrap: break-word; 
         }
         .section {
             padding: 4rem 1rem;
@@ -47,12 +44,12 @@
             border: 1px solid #e0e0e0;
         }
         .highlight-text {
-            color: var(--color-primary); /* Use deep teal for highlight */
+            color: var(--color-primary);
             font-weight: 600;
         }
         .detail-label {
             font-weight: 500;
-            color: #777777; /* Soft gray for labels */
+            color: #777777;
         }
         .contact-link {
             transition: color 0.2s;
@@ -115,13 +112,15 @@
             margin-top: 10px;
             font-size: 18px;
         }
+        /* Ensures the button doesn't block clicks when invisible */
+        .pointer-events-none {
+            pointer-events: none;
+        }
     </style>
-    <!-- Lucide Icons for contact details -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body onload="lucide.createIcons()">
 
-    <!-- Header (Simple Title Bar) -->
     <header class="bg-white/95 sticky top-0 z-50 border-b border-gray-200 backdrop-blur-sm shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -132,14 +131,12 @@
         </div>
     </header>
 
-    <!-- Hero Section / Main Profile -->
     <section id="profile" class="section pt-10">
         <div class="info-card p-8 rounded-2xl shadow-xl flex flex-col md:flex-row items-center md:items-start gap-8">
             
-            <!-- Profile Picture (Kurta Pajama) -->
             <div class="flex-shrink-0">
                 <img 
-                    src="uploaded:1000000178.jpg" 
+                    src="https://drive.google.com/uc?export=view&id=1BX1R_vfx033HLOidwCMzTUhbMdPW3gGJ" 
                     alt="Jitender's Profile Picture (Traditional Attire - Kurta Pajama)" 
                     class="w-48 h-60 object-cover rounded-lg shadow-2xl border-4 border-teal-800 cursor-pointer"
                     onerror="this.onerror=null; this.src='https://placehold.co/200x250/CCCCCC/0F4C5C?text=Image+Unavailable';"
@@ -147,7 +144,6 @@
                 >
             </div>
 
-            <!-- Introduction Text -->
             <div class="flex-grow text-center md:text-left">
                 <h2 class="text-4xl sm:text-5xl font-extrabold text-teal-900 mb-2">
                     Jitender
@@ -161,9 +157,8 @@
                     </p>
                 </div>
                 
-                <!-- Quick Summary Tags (Mobile/Tablet Friendly) -->
                 <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
-                    <span class="px-3 py-1 bg-teal-800 text-white text-sm rounded-full">30 Years</span>
+                    <span class="px-3 py-1 bg-teal-800 text-white text-sm rounded-full">32 Years</span>
                     <span class="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-full">5' 11"</span>
                     <span class="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-full">Hindu - Yadav</span>
                 </div>
@@ -171,29 +166,23 @@
         </div>
     </section>
 
-    <!-- Photo Gallery Section -->
     <section id="gallery" class="section py-10">
         <h2 class="text-3xl font-bold text-center mb-8 text-teal-800 border-b-2 border-amber-600 inline-block pb-1 px-4" style="border-color:var(--color-accent);">Moments Captured</h2>
 
-        <!-- Responsive Photo Grid (4 images) -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
 
-            <!-- Image 1: Formal Portrait (Shirt/Jeans 1) -->
             <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
-                <img src="uploaded:1000000645.jpg" alt="Formal professional portrait (Shirt/Jeans)" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+                <img src="https://drive.google.com/uc?export=view&id=1BX1R_vfx033HLOidwCMzTUhbMdPW3gGJ" alt="Formal professional portrait (Shirt/Jeans)" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
             </div>
 
-            <!-- Image 2: Candid Smile (Shirt/Jeans 2) -->
             <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
-                <img src="uploaded:1000000262.jpg" alt="Candid photo with a smile (Shirt/Jeans)" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+                <img src="https://drive.google.com/uc?export=view&id=1BX1R_vfx033HLOidwCMzTUhbMdPW3gGJ" alt="Candid photo with a smile (Shirt/Jeans)" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
             </div>
 
-            <!-- Image 3: Traditional Attire (Kurta Pajama) -->
             <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
-                <img src="uploaded:1000000178.jpg" alt="Traditional attire photo" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+                <img src="https://drive.google.com/uc?export=view&id=1BX1R_vfx033HLOidwCMzTUhbMdPW3gGJ" alt="Traditional attire photo" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
             </div>
             
-            <!-- Image 4: Placeholder -->
             <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
                 <img src="https://placehold.co/400x500/0F4C5C/C5B358?text=Family+Photo" alt="Photo with family or close friends placeholder" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
             </div>
@@ -201,13 +190,10 @@
         </div>
     </section>
     
-    <!-- Main Details Sections -->
     <main class="section grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-        <!-- Column 1: Personal & Lifestyle -->
         <div class="lg:col-span-1 space-y-8">
             
-            <!-- Personal Information Card -->
             <div class="info-card p-6 rounded-xl shadow-lg">
                 <h3 class="text-2xl font-bold mb-4 text-teal-800">Personal Profile</h3>
                 <dl class="space-y-3">
@@ -238,14 +224,12 @@
                 </dl>
             </div>
 
-            <!-- Contact Card -->
             <div class="info-card p-6 rounded-xl shadow-lg">
                 <h3 class="text-2xl font-bold mb-4 text-teal-800">Contact Details</h3>
                 <p class="text-gray-600 mb-4">
                     Further discussions can be initiated using the contact details provided below:
                 </p>
                 <div class="space-y-2">
-                    <!-- Phone Number (Clickable for Call) -->
                     <p class="text-lg font-semibold">
                         <span class="detail-label block text-sm">Phone:</span>
                         <a href="tel:+919654201893" class="highlight-text contact-link flex items-center gap-2">
@@ -254,7 +238,6 @@
                         </a>
                     </p>
 
-                    <!-- WhatsApp Link -->
                     <p class="text-lg font-semibold pt-1">
                         <span class="detail-label block text-sm">WhatsApp:</span>
                         <a href="https://wa.me/919654201893?text=I+am+interested+in+your+biodata+portfolio." target="_blank" class="highlight-text contact-link flex items-center gap-2">
@@ -263,7 +246,6 @@
                         </a>
                     </p>
 
-                    <!-- Email ID (Clickable for Mail) -->
                     <p class="text-lg font-semibold pt-1">
                         <span class="detail-label block text-sm">Email:</span>
                         <a href="mailto:Jitukumar181993@gmail.com" class="highlight-text contact-link flex items-center gap-2">
@@ -272,7 +254,6 @@
                         </a>
                     </p>
 
-                    <!-- Address -->
                     <p class="text-lg font-semibold pt-1">
                         <span class="detail-label block text-sm">Address:</span>
                         <span class="text-gray-600 text-base">Village Paprawat, Najafgarh, Delhi</span>
@@ -281,15 +262,12 @@
             </div>
         </div>
 
-        <!-- Column 2: Career & Education (Spanning 2/3 width on large screens) -->
         <div class="lg:col-span-2 space-y-8">
 
-            <!-- Career & Education Card -->
             <div class="info-card p-6 rounded-xl shadow-lg">
                 <h3 class="text-2xl font-bold mb-4 text-teal-800">Career & Education</h3>
                 
                 <div class="space-y-6">
-                    <!-- Professional Background -->
                     <div class="border-l-4 border-amber-600 pl-4">
                         <h4 class="text-xl font-semibold text-teal-900">Professional Background</h4>
                         <p class="text-gray-600 mt-2">
@@ -300,7 +278,6 @@
                         </p>
                     </div>
 
-                    <!-- Educational Background -->
                     <div class="border-l-4 border-amber-600 pl-4">
                         <h4 class="text-xl font-semibold text-teal-900">Educational Qualifications</h4>
                         <ul class="list-disc list-inside text-gray-600 space-y-1 mt-2">
@@ -310,17 +287,14 @@
                 </div>
             </div>
 
-            <!-- Family Details Card -->
             <div class="info-card p-6 rounded-xl shadow-lg">
                 <h3 class="text-2xl font-bold mb-4 text-teal-800">Family Background</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <!-- Father Details -->
                     <div class="space-y-1">
                         <h4 class="text-lg font-semibold text-teal-900">Father: Dharmveer Yadav</h4>
                         <p class="text-gray-600"><span class="detail-label">Profession:</span> Retired / At Home (Farmer)</p>
                         <p class="text-gray-600"><span class="detail-label">Gotra:</span> Nirban</p>
                     </div>
-                    <!-- Mother Details -->
                     <div class="space-y-1">
                         <h4 class="text-lg font-semibold text-teal-900">Mother: Usha Yadav</h4>
                         <p class="text-gray-600"><span class="detail-label">Profession:</span> Homemaker</p>
@@ -336,7 +310,6 @@
                 </div>
             </div>
 
-            <!-- Interests & Expectations Card -->
             <div class="info-card p-6 rounded-xl shadow-lg">
                 <h3 class="text-2xl font-bold mb-4 text-teal-800">Interests</h3>
                 
@@ -351,7 +324,6 @@
 
     </main>
 
-    <!-- Footer / Closing Statement -->
     <footer class="bg-white border-t border-gray-200 mt-12 py-8 shadow-inner">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-500 text-lg mb-2">
@@ -360,7 +332,13 @@
         </div>
     </footer>
 
-    <!-- Lightbox Overlay (Hidden by Default) -->
+    <button id="back-to-top" 
+        class="fixed bottom-6 right-6 p-3 bg-teal-800 text-white rounded-full shadow-xl opacity-0 transition-opacity duration-300 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-amber-300 z-50 pointer-events-none"
+        aria-label="Back to top"
+        onclick="scrollToTop()">
+        <span data-lucide="arrow-up" class="w-6 h-6 text-amber-300"></span>
+    </button>
+
     <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
         <div class="lightbox-image-container" onclick="event.stopPropagation()">
             <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
@@ -369,10 +347,10 @@
         </div>
     </div>
 
-    <!-- JavaScript for Lightbox Functionality -->
     <script>
-        // Lightbox Functions (same as before)
+        // --- Lightbox Functions (Image Popup) ---
         function openLightbox(src, alt) {
+            // NOTE: If using Google Drive links, only the direct link will work in the lightbox too.
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox-caption').innerText = alt;
             document.getElementById('lightbox-overlay').classList.add('active');
@@ -390,7 +368,34 @@
             }
         });
         
-        // Ensure Lucide icons are rendered after the DOM loads
+        // --- Back to Top Functions ---
+        const backToTopButton = document.getElementById('back-to-top');
+        const scrollThreshold = 300; // Button appears after 300px scroll
+
+        // Scrolls smoothly to the top of the page
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' 
+            });
+        }
+
+        // Shows/Hides the button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > scrollThreshold) {
+                // Show button
+                backToTopButton.classList.add('opacity-100');
+                backToTopButton.classList.remove('opacity-0');
+                backToTopButton.classList.remove('pointer-events-none');
+            } else {
+                // Hide button
+                backToTopButton.classList.remove('opacity-100');
+                backToTopButton.classList.add('opacity-0');
+                backToTopButton.classList.add('pointer-events-none'); // Disable clicks when invisible
+            }
+        });
+
+        // Initialize Lucide icons on load
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof lucide !== 'undefined') {
                  lucide.createIcons();
@@ -400,4 +405,3 @@
 
 </body>
 </html>
-
