@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biodata Portfolio - Jitender</title>
     
+    <link rel="icon" type="image/png" href="https://img.icons8.com/?size=96&id=32274&format=png">
+
     <meta property="og:title" content="Jitender | Full Biodata & Matrimonial Profile">
     <meta property="og:description" content="Official Profile: Content Operation Team Lead, Age 32. Tap 'View Profile' to see Personal, Professional & Family details.">
     <meta property="og:image" content="https://placehold.co/1200x630/0F4C5C/C5B358?text=JITENDER'S+BIODATA+%7C+TAP+TO+VIEW">
@@ -15,7 +17,7 @@
         /* Load Inter font */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         
-        /* Premium Theme Colors */
+        /* Premium Theme Colors: LIGHT MODE (Default) */
         :root {
             --color-primary: #0F4C5C; /* Deep Teal/Forest Green */
             --color-accent: #C5B358; /* Soft Gold/Mustard */
@@ -23,16 +25,17 @@
             --color-card-bg: #FFFFFF; /* Pure White Card */
             --color-text: #2c2c2c; /* Dark Text */
         }
-
+        
+        /* Apply Colors using CSS Variables */
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--color-background);
             color: var(--color-text);
             scroll-behavior: smooth;
-            
-            /* FIX: Ensures text breaks neatly and doesn't overflow (Responsive Fix) */
             word-wrap: break-word;
             overflow-wrap: break-word; 
+            /* FIX: Ensures scroll to top goes past the sticky header */
+            scroll-padding-top: 5rem; 
         }
         .section {
             padding: 4rem 1rem;
@@ -51,14 +54,71 @@
             font-weight: 500;
             color: #777777;
         }
-        .contact-link {
-            transition: color 0.2s;
+        
+        /* Contact Button Styles */
+        .contact-btn {
+            background-color: var(--color-primary);
+            color: white;
+            transition: background-color 0.2s, transform 0.1s;
         }
-        .contact-link:hover {
-            color: var(--color-accent);
+        .contact-btn:hover {
+            background-color: #0c3d49;
+            transform: translateY(-1px);
+        }
+        
+        /* Share and Floating Button Styles */
+        .share-btn-style {
+            background-color: var(--color-primary);
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        .share-btn-style:hover {
+            background-color: #0c3d49;
+        }
+        .floating-icon-accent {
+            color: var(--color-accent) !important;
+        }
+        
+        /* --- ScrollSpy Active Link Style --- */
+        .active-link {
+            color: var(--color-primary) !important; 
+            font-weight: 700;
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 2px;
+        }
+        
+        /* Floating Button Container - RIGHT SIDE */
+        #floating-buttons-right {
+            position: fixed;
+            bottom: 20px;
+            right: 20px; 
+            z-index: 50;
+            display: flex;
+            gap: 8px;
+            align-items: center;
         }
 
-        /* Lightbox CSS (for image popup) */
+        /* Floating Button Container - LEFT SIDE */
+        #floating-buttons-left {
+            position: fixed;
+            bottom: 20px;
+            left: 20px; 
+            z-index: 50;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        /* Back to Top button visibility control */
+        #back-to-top {
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #back-to-top.hidden-btn {
+            opacity: 0;
+            visibility: hidden; 
+            pointer-events: none;
+        }
+        
+        /* Lightbox CSS (unchanged) */
         .lightbox-overlay {
             position: fixed;
             top: 0;
@@ -112,21 +172,50 @@
             margin-top: 10px;
             font-size: 18px;
         }
-        /* Ensures the button doesn't block clicks when invisible */
-        .pointer-events-none {
-            pointer-events: none;
+        
+        /* Google Translate Widget Adjustments */
+        #google_translate_element {
+            margin-left: 10px; 
+            margin-right: 10px;
+        }
+        .goog-te-combo {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 3px 6px;
+            height: 30px;
+            background-color: #fff;
+            color: var(--color-primary);
         }
     </style>
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </head>
 <body onload="lucide.createIcons()">
 
-    <header class="bg-white/95 sticky top-0 z-50 border-b border-gray-200 backdrop-blur-sm shadow-sm">
+    <header class="bg-white/95 sticky top-0 z-50 border-b border-gray-200 backdrop-blur-sm shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <h1 class="text-xl font-bold tracking-wider text-teal-800">
+                <h1 class="text-xl font-bold tracking-wider text-teal-800 flex-shrink-0">
                     Jitender's Biodata
                 </h1>
+                
+                <div class="flex items-center gap-3">
+                    <div id="google_translate_element" class="text-sm"></div>
+                </div>
+
+                <nav id="main-nav" class="hidden md:flex space-x-6 text-sm font-medium ml-4">
+                    <a href="#profile" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="profile">Profile</a>
+                    <a href="#career" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="career">Career</a>
+                    <a href="#family" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="family">Family</a>
+                    <a href="#contact-card" class="nav-link text-gray-600 hover:text-teal-800 transition" data-target="contact-card">Contact</a>
+                </nav>
             </div>
         </div>
     </header>
@@ -136,8 +225,8 @@
             
             <div class="flex-shrink-0">
                 <img 
-                    src="https://drive.google.com/uc?export=view&id=1BX1R_vfx033HLOidwCMzTUhbMdPW3gGJ" 
-                    alt="Jitender's Profile Picture (Traditional Attire - Kurta Pajama)" 
+                    src="https://raw.githubusercontent.com/jitu1893/Jitender-s-profile-/refs/heads/main/fa75700c-5d24-43c5-9086-aabb3727fda8-f20c5a86-1317-4808-85e4-f07a78d50c63%7E2.jpg" 
+                    alt="Jitender's pictures" 
                     class="w-48 h-60 object-cover rounded-lg shadow-2xl border-4 border-teal-800 cursor-pointer"
                     onerror="this.onerror=null; this.src='https://placehold.co/200x250/CCCCCC/0F4C5C?text=Image+Unavailable';"
                     onclick="openLightbox(this.src, this.alt)"
@@ -151,11 +240,6 @@
                 <p class="text-xl font-medium text-amber-600 mb-4" style="color:var(--color-accent);">
                     Content Operation Team Lead | Committed & Graduate
                 </p>
-                <div class="max-w-xl mx-auto md:mx-0">
-                    <p class="text-gray-600 leading-relaxed">
-                        I believe in building a life filled with mutual respect, intellectual growth, and shared joy. As a passionate traveler and reader, I seek a partner who values thoughtful conversation, shares a zest for life, and is ready to co-create a warm and supportive home.
-                    </p>
-                </div>
                 
                 <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
                     <span class="px-3 py-1 bg-teal-800 text-white text-sm rounded-full">32 Years</span>
@@ -170,21 +254,21 @@
         <h2 class="text-3xl font-bold text-center mb-8 text-teal-800 border-b-2 border-amber-600 inline-block pb-1 px-4" style="border-color:var(--color-accent);">Moments Captured</h2>
 
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-
+            
             <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
-                <img src="https://drive.google.com/uc?export=view&id=1BX1R_vfx033HLOidwCMzTUhbMdPW3gGJ" alt="Formal professional portrait (Shirt/Jeans)" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+                <img src="https://raw.githubusercontent.com/jitu1893/Jitender-s-profile-/refs/heads/main/fa75700c-5d24-43c5-9086-aabb3727fda8-f20c5a86-1317-4808-85e4-f07a78d50c63%7E2.jpg" alt="Jitender's pictures" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
             </div>
 
             <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
-                <img src="https://drive.google.com/uc?export=view&id=1BX1R_vfx033HLOidwCMzTUhbMdPW3gGJ" alt="Candid photo with a smile (Shirt/Jeans)" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+                <img src="https://raw.githubusercontent.com/jitu1893/Jitender-s-profile-/refs/heads/main/IMG-20240319-WA0012.jpg" alt="Jitender's pictures" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
             </div>
 
             <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
-                <img src="https://drive.google.com/uc?export=view&id=1BX1R_vfx033HLOidwCMzTUhbMdPW3gGJ" alt="Traditional attire photo" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+                <img src="https://raw.githubusercontent.com/jitu1893/Jitender-s-profile-/refs/heads/main/IMG-20240502-WA0017.jpg" alt="Jitender's pictures" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
             </div>
             
             <div class="rounded-xl overflow-hidden shadow-lg transition duration-300 hover:shadow-teal-300/50 hover:scale-[1.03] cursor-pointer">
-                <img src="https://placehold.co/400x500/0F4C5C/C5B358?text=Family+Photo" alt="Photo with family or close friends placeholder" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
+                <img src="https://raw.githubusercontent.com/jitu1893/Jitender-s-profile-/refs/heads/main/Snapchat-884208734.jpg" alt="Jitender's pictures" class="w-full h-full object-cover aspect-[4/5] min-h-[250px]" onclick="openLightbox(this.src, this.alt)">
             </div>
             
         </div>
@@ -195,7 +279,7 @@
         <div class="lg:col-span-1 space-y-8">
             
             <div class="info-card p-6 rounded-xl shadow-lg">
-                <h3 class="text-2xl font-bold mb-4 text-teal-800">Personal Profile</h3>
+                <h3 class="text-2xl font-bold mb-4 text-teal-800">Personal Profile (Key Details)</h3>
                 <dl class="space-y-3">
                     <div class="flex justify-between border-b border-gray-100 pb-2">
                         <dt class="detail-label">Date of Birth</dt>
@@ -208,6 +292,10 @@
                     <div class="flex justify-between border-b border-gray-100 pb-2">
                         <dt class="detail-label">Place of Birth</dt>
                         <dd class="highlight-text">Delhi</dd>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-100 pb-2">
+                        <dt class="detail-label">Zodiac Sign</dt>
+                        <dd class="highlight-text">Virgo (कन्या)</dd>
                     </div>
                     <div class="flex justify-between border-b border-gray-100 pb-2">
                         <dt class="detail-label">Manglik Status</dt>
@@ -223,48 +311,34 @@
                     </div>
                 </dl>
             </div>
-
-            <div class="info-card p-6 rounded-xl shadow-lg">
+            
+            <div id="contact-card" class="info-card p-6 rounded-xl shadow-lg">
                 <h3 class="text-2xl font-bold mb-4 text-teal-800">Contact Details</h3>
+                
                 <p class="text-gray-600 mb-4">
-                    Further discussions can be initiated using the contact details provided below:
+                    To initiate the discussion or for any inquiries, please use the following contact details:
                 </p>
-                <div class="space-y-2">
-                    <p class="text-lg font-semibold">
-                        <span class="detail-label block text-sm">Phone:</span>
-                        <a href="tel:+919654201893" class="highlight-text contact-link flex items-center gap-2">
-                            <span data-lucide="phone" class="w-5 h-5 text-amber-600"></span>
-                            +91 96542 01893 (Call)
-                        </a>
-                    </p>
+                <div class="space-y-4">
+                    <a href="https://wa.me/919654201893?text=I+am+interested+in+your+biodata+portfolio." target="_blank" class="contact-btn whatsapp flex items-center justify-center gap-3 p-3 rounded-lg text-lg font-semibold shadow-md">
+                        <span data-lucide="message-square-text" class="w-6 h-6"></span>
+                        Chat on WhatsApp
+                    </a>
+                    
+                    <a href="tel:+919654201893" class="contact-btn flex items-center justify-center gap-3 p-3 rounded-lg text-lg font-semibold shadow-md">
+                        <span data-lucide="phone" class="w-6 h-6"></span>
+                        Call Now
+                    </a>
 
-                    <p class="text-lg font-semibold pt-1">
-                        <span class="detail-label block text-sm">WhatsApp:</span>
-                        <a href="https://wa.me/919654201893?text=I+am+interested+in+your+biodata+portfolio." target="_blank" class="highlight-text contact-link flex items-center gap-2">
-                            <span data-lucide="message-square-text" class="w-5 h-5 text-amber-600"></span>
-                            +91 96542 01893 (Chat)
-                        </a>
-                    </p>
-
-                    <p class="text-lg font-semibold pt-1">
-                        <span class="detail-label block text-sm">Email:</span>
-                        <a href="mailto:Jitukumar181993@gmail.com" class="highlight-text contact-link flex items-center gap-2">
-                            <span data-lucide="mail" class="w-5 h-5 text-amber-600"></span>
-                            Jitukumar181993@gmail.com
-                        </a>
-                    </p>
-
-                    <p class="text-lg font-semibold pt-1">
-                        <span class="detail-label block text-sm">Address:</span>
-                        <span class="text-gray-600 text-base">Village Paprawat, Najafgarh, Delhi</span>
+                    <p class="text-sm pt-2 text-center text-gray-500">
+                        Email: <a href="mailto:Jitukumar181993@gmail.com" class="text-teal-800 underline hover:text-amber-600">Jitukumar181993@gmail.com</a>
                     </p>
                 </div>
             </div>
         </div>
 
         <div class="lg:col-span-2 space-y-8">
-
-            <div class="info-card p-6 rounded-xl shadow-lg">
+            
+            <div id="career" class="info-card p-6 rounded-xl shadow-lg">
                 <h3 class="text-2xl font-bold mb-4 text-teal-800">Career & Education</h3>
                 
                 <div class="space-y-6">
@@ -287,7 +361,7 @@
                 </div>
             </div>
 
-            <div class="info-card p-6 rounded-xl shadow-lg">
+            <div id="family" class="info-card p-6 rounded-xl shadow-lg">
                 <h3 class="text-2xl font-bold mb-4 text-teal-800">Family Background</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div class="space-y-1">
@@ -308,16 +382,37 @@
                         2 Elder Sisters: Both are married and settled.
                     </p>
                 </div>
+                
+                <div class="mt-4 border-t border-gray-100 pt-4">
+                    <h4 class="text-lg font-semibold text-teal-900 mb-2">Address</h4>
+                    <p class="text-gray-600">
+                        Village Paprawat, Najafgarh, Delhi
+                    </p>
+                </div>
             </div>
 
             <div class="info-card p-6 rounded-xl shadow-lg">
-                <h3 class="text-2xl font-bold mb-4 text-teal-800">Interests</h3>
+                <h3 class="text-2xl font-bold mb-4 text-teal-800">Interests & Values</h3>
                 
-                <h4 class="text-xl font-semibold text-teal-900">My Interests</h4>
-                <div class="mt-2 flex flex-wrap gap-2 mb-4">
-                    <span class="px-3 py-1 bg-amber-100 text-teal-900 text-sm rounded-full">Cricket</span>
-                    <span class="px-3 py-1 bg-amber-100 text-teal-900 text-sm rounded-full">Music</span>
-                    <span class="px-3 py-1 bg-amber-100 text-teal-900 text-sm rounded-full">Cooking</span>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-xl font-semibold text-teal-900 mb-2">My Interests</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-amber-100 text-teal-900 text-sm rounded-full">Cricket</span>
+                            <span class="px-3 py-1 bg-amber-100 text-teal-900 text-sm rounded-full">Music</span>
+                            <span class="px-3 py-1 bg-amber-100 text-teal-900 text-sm rounded-full">Cooking</span>
+                            <span class="px-3 py-1 bg-amber-100 text-teal-900 text-sm rounded-full">Reading & Travel</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-100 pt-4">
+                        <h4 class="text-xl font-semibold text-teal-900 mb-2">Core Values</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1 pl-4">
+                            <li>Honesty and Transparency in communication.</li>
+                            <li>Respect for elders and family traditions.</li>
+                            <li>A modern outlook with deep-rooted values.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -332,12 +427,32 @@
         </div>
     </footer>
 
-    <button id="back-to-top" 
-        class="fixed bottom-6 right-6 p-3 bg-teal-800 text-white rounded-full shadow-xl opacity-0 transition-opacity duration-300 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-amber-300 z-50 pointer-events-none"
-        aria-label="Back to top"
-        onclick="scrollToTop()">
-        <span data-lucide="arrow-up" class="w-6 h-6 text-amber-300"></span>
-    </button>
+    <div id="floating-buttons-left">
+        
+        <button id="print-profile" 
+            class="p-3 share-btn-style rounded-full shadow-xl focus:outline-none focus:ring-4 focus:ring-amber-300 z-50"
+            aria-label="Print or Download Profile"
+            onclick="window.print()">
+            <span data-lucide="printer" class="w-6 h-6 floating-icon-accent"></span>
+        </button>
+    </div>
+
+    <div id="floating-buttons-right">
+        
+        <button id="back-to-top" 
+            class="p-3 share-btn-style rounded-full shadow-xl focus:outline-none focus:ring-4 focus:ring-amber-300 z-50 hidden-btn"
+            aria-label="Back to top"
+            onclick="scrollToTop()">
+            <span data-lucide="arrow-up" class="w-6 h-6 floating-icon-accent"></span>
+        </button>
+        
+        <button id="share-profile" 
+            class="p-3 share-btn-style text-white rounded-full shadow-xl transition duration-300 focus:outline-none focus:ring-4 focus:ring-amber-300 z-50"
+            aria-label="Share Profile"
+            onclick="shareProfile()">
+            <span data-lucide="share-2" class="w-6 h-6 floating-icon-accent"></span>
+        </button>
+    </div>
 
     <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
         <div class="lightbox-image-container" onclick="event.stopPropagation()">
@@ -350,7 +465,6 @@
     <script>
         // --- Lightbox Functions (Image Popup) ---
         function openLightbox(src, alt) {
-            // NOTE: If using Google Drive links, only the direct link will work in the lightbox too.
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox-caption').innerText = alt;
             document.getElementById('lightbox-overlay').classList.add('active');
@@ -370,30 +484,93 @@
         
         // --- Back to Top Functions ---
         const backToTopButton = document.getElementById('back-to-top');
-        const scrollThreshold = 300; // Button appears after 300px scroll
+        const scrollThreshold = 300; 
 
-        // Scrolls smoothly to the top of the page
         function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' 
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Shows/Hides the button based on scroll position
+        // Show/Hide Back to Top button based on scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > scrollThreshold) {
-                // Show button
-                backToTopButton.classList.add('opacity-100');
-                backToTopButton.classList.remove('opacity-0');
-                backToTopButton.classList.remove('pointer-events-none');
+                backToTopButton.classList.remove('hidden-btn');
             } else {
-                // Hide button
-                backToTopButton.classList.remove('opacity-100');
-                backToTopButton.classList.add('opacity-0');
-                backToTopButton.classList.add('pointer-events-none'); // Disable clicks when invisible
+                backToTopButton.classList.add('hidden-btn');
             }
         });
+        
+        // --- ScrollSpy Implementation ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section, #contact-card'); // Include the contact card as a section
+        
+        function scrollSpy() {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100; // Subtract header height
+                const sectionHeight = section.clientHeight;
+                
+                // If the current scroll position is within the boundaries of the section
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            // Handle Contact Card which is inside lg:col-span-1
+            if (scrollY + window.innerHeight >= document.body.scrollHeight - 50) {
+                 // Check if user is near the very bottom, typically where contact is
+                 current = 'contact-card';
+            }
+
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if (link.getAttribute('data-target') === current) {
+                    link.classList.add('active-link');
+                }
+            });
+            
+            // Special Case: Always highlight 'Profile' when at the very top (scrollY < 100)
+            if (window.scrollY < 100) {
+                 navLinks.forEach(link => link.classList.remove('active-link'));
+                 const profileLink = document.querySelector('.nav-link[data-target="profile"]');
+                 if (profileLink) {
+                     profileLink.classList.add('active-link');
+                 }
+            }
+        }
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', scrollSpy);
+        
+        // Run once on load to set the initial active link
+        document.addEventListener('DOMContentLoaded', scrollSpy);
+
+
+        // --- Share Profile Function ---
+        function shareProfile() {
+            const url = window.location.href;
+            const title = "Jitender's Biodata Profile";
+            const text = "Please view Jitender's official matrimonial profile, including personal, career, and family details. Contact directly via WhatsApp/Call given on the page.";
+
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: text,
+                    url: url,
+                })
+                .then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing', error));
+            } else {
+                // Fallback for desktop/non-supporting browsers: Copy Link
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Profile link copied to clipboard! You can share it now.');
+                }).catch(err => {
+                    console.error('Could not copy text: ', err);
+                    window.open(`https://web.whatsapp.com/send?text=${encodeURIComponent(text + " " + url)}`, '_blank');
+                });
+            }
+        }
 
         // Initialize Lucide icons on load
         document.addEventListener('DOMContentLoaded', function() {
